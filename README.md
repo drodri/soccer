@@ -27,7 +27,7 @@ Then, build and run the server:
 	$ bin\diego_soccer_game_server
 
 
-![Match](https://webapi.biicode.com/v1/raw/diego/diego/soccer/master/0/match.png)
+![Match](https://raw.githubusercontent.com/drodri/soccer/master/match.png)
 
 
 Then, in another console, move to your project folder and run the client:

@@ -1,0 +1,21 @@
+package soccer;
+
+message Player {
+  required int32 id = 1;
+  required float x = 2;
+  required float y = 3;
+}
+message Ball {
+  required float x = 1;
+  required float y = 2;
+}
+message GameStatus {
+  repeated Player player = 1;
+  required Ball ball = 2;
+}
+
+message Command {
+  required int32 id = 1;
+  required float speed = 2;
+  required float angle = 3;
+}

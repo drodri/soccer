@@ -22,14 +22,3 @@ std::string fill_msg(const Game& game){
 	game_msg.SerializeToOstream(&output);
 	return output.str();
 }
-void execute_command(std::string msg, Game& game){
-	soccer::Command command_msg;
-	std::istringstream input(msg);
-	command_msg.ParseFromIstream(&input);
-	//std::cout << command_msg.DebugString();
-	int id = command_msg.id();
-	if (id < 0 || id >= 10)
-		return;
-	game.players[id].speed = command_msg.speed();
-	game.players[id].angle = command_msg.angle();
-}

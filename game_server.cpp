@@ -18,8 +18,7 @@ int main(void){
 	zmq::context_t context;
 	zmq::socket_t publisher(context, ZMQ_PUB);
 	publisher.bind("tcp://*:12345");
-	zmq::socket_t receiver(context, ZMQ_PULL);
-	receiver.bind("tcp://*:12346");
+
 	double time_ini = glfwGetTime();
     while (!glfwWindowShouldClose(window)){
 		updateWorldView(window);
@@ -31,9 +30,7 @@ int main(void){
 		zmq::message_t zmsg;
 		get_msg(msg, zmsg);
 		publisher.send(zmsg);
-		zmq::message_t command;
-		while (receiver.recv(&command, ZMQ_NOBLOCK))
-			execute_command(get_str(command), game);
+		//TODO: Get commands, parse id, speed, angle, apply to player
 
 		glfwSwapBuffers(window);
         glfwPollEvents();

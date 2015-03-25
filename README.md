@@ -12,18 +12,17 @@ The messages are encoded in binary format with Google Protocol Buffers (protobuf
 
 After downloading and installing biicode, run:
 
-	$ bii init myproject
-	$ cd myproject
-	$ bii open diego/soccer
-	$ bii cpp:configure 
+	$ git clone git clone https://github.com/drodri/soccer.git
+	$ cd soccer
+	$ bii init -L
 
 If in windows you should use VS 12 or other VS instead, as LibZMQ does not build with MinGW.
 
-	$ bii cpp:configure -G "Visual Studio 12" 
+	$ bii configure -G "Visual Studio 12" 
 
-Then, build and run the server:
+Then, build and run the server (the name of the executables might vary):
 
-	$ bii cpp:build
+	$ bii build
 	$ bin\diego_soccer_game_server
 
 
@@ -37,7 +36,7 @@ Then, in another console, move to your project folder and run the client:
 Remember if you want to change your messages, you have to compile the **game_status.proto** with *protoc*.
 
 	$ bii open google/protobuf
-	$ bii cpp:build
+	$ bii build
 
 That will copy the binary protoc to your bin directory. Then change directory to your source folder:
 

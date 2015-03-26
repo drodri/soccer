@@ -7,8 +7,7 @@
 #include <sstream>
 #include <string>
 
-
-int main(void){
+int main(){
 	GLFWwindow* window = InitGLFW(800, 600);
 	Game game;
 

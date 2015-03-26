@@ -6,8 +6,7 @@
 //#include "game_status.pb.h"
 #include "zmqcpp_msgs.h"
 
-
-int main(int argc, char* argv[]){
+int main(){
 	
 	while(1){
 		//Get game status

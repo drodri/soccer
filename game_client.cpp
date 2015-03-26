@@ -9,10 +9,18 @@
 int main(){
 	
 	//1. Set zmq subscriber to game status
+	zmq::context_t context;
+    zmq::socket_t subscriber(context, ZMQ_SUB);
+    subscriber.connect("tcp://localhost:12345");
+    const char *filter = "";
+    subscriber.setsockopt(ZMQ_SUBSCRIBE, filter, strlen(filter));
 
 	// . Set zmq pusher to send client commands
 	while(1){
-		//2. Get zmq_msg, conver to string
+		zmq::message_t update;
+        subscriber.recv(&update);
+        std::string msg=get_str(update);
+        std::cout<<msg;
 		//3. Get game status, with Protobuf from stream
 		//4. obtain ball coordinates(bx, by)
 

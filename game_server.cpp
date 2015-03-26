@@ -9,7 +9,7 @@
 
 std::string get_game_status(const Game& game){
 	//protobuf serialization of Game here
-	return "";
+	return "Hello";
 }
 
 int main(){
@@ -17,7 +17,9 @@ int main(){
 	Game game;
 
 	//1. Setup broadcast server
-
+	zmq::context_t context;
+    zmq::socket_t publisher(context, ZMQ_PUB);
+    publisher.bind("tcp://*:12345");
 	//5. Setup command pull reciever
 
 	double time_ini = glfwGetTime();
@@ -31,6 +33,10 @@ int main(){
 		//broadcast game current status
 		//2. Serialize game into std::string with Protobuf
 		std::string status=get_game_status(game);
+        zmq::message_t zmsg;
+        get_msg(status, zmsg);
+        publisher.send(zmsg);
+
 		//3. Convert string to zmq message with:
 		//   get_msg (const std::string& str, zmq::message_t& msg)
 		//4. Send message broadcast

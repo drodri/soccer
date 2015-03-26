@@ -11,5 +11,3 @@ inline void get_msg(const std::string& str, zmq::message_t& msg){
     msg.rebuild(str.length());
     memcpy ((void *) msg.data (), str.c_str(), str.length());
 }
-
-

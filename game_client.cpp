@@ -35,10 +35,15 @@ int main(){
 		for (int i = 0; i < 10; i++){
 			float x = game_msg.players(i).x();
             float y = game_msg.players(i).y();
-            std::cout<<"player "<<i<<" "<<x<<", "<<y<<"\n";
+            //std::cout<<"player "<<i<<" "<<x<<", "<<y<<"\n";
             float angle = 3.14 + atan2(y - by, x - bx);
 
-			std::string com = "command";
+			std::string com;
+			soccer::Command command_msg;
+            command_msg.set_id(i);
+            command_msg.set_angle(angle);
+            command_msg.set_speed(20);
+            command_msg.SerializeToString(&com);
 			zmq::message_t zmsg;
             get_msg(com, zmsg);
             sender.send(zmsg);

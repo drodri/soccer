@@ -52,17 +52,16 @@ int main(){
         zmq::message_t command;
         while (receiver.recv(&command, ZMQ_NOBLOCK)){
         	std::string com = get_str(command);
-        	std::cout<<com;
+        	soccer::Command command_msg;
+		    command_msg.ParseFromString(com);
+		    //std::cout << command_msg.DebugString();
+		    int id = command_msg.id();
+		    if (id < 0 || id >= 10)
+		        return -1;
+		    game.players[id].speed = command_msg.speed();
+		    game.players[id].angle = command_msg.angle();
         }
 
-		// RECEIVE AND EXECUTE COMMANDS while incoming command
-		// 6. Receive zmq_message
-		// 7. convert to std::string get_str(zmq_message)
-		// 8. Deserialize (id: int, speed: float, angle: float) with ProtoBuf
-		// 9. Assign to player:
-		//		game.players[id].speed = speed;
-    	//		game.players[id].angle = angle;
-    	game.players[0].speed = 10;
 
 		glfwSwapBuffers(window);
         glfwPollEvents();

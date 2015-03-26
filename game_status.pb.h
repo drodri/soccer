@@ -39,6 +39,7 @@ void protobuf_ShutdownFile_game_5fstatus_2eproto();
 class Player;
 class Ball;
 class GameStatus;
+class Command;
 
 // ===================================================================
 
@@ -358,6 +359,118 @@ class GameStatus : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static GameStatus* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class Command : public ::google::protobuf::Message {
+ public:
+  Command();
+  virtual ~Command();
+
+  Command(const Command& from);
+
+  inline Command& operator=(const Command& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Command& default_instance();
+
+  void Swap(Command* other);
+
+  // implements Message ----------------------------------------------
+
+  inline Command* New() const { return New(NULL); }
+
+  Command* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Command& from);
+  void MergeFrom(const Command& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(Command* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int32 id = 1;
+  inline bool has_id() const;
+  inline void clear_id();
+  static const int kIdFieldNumber = 1;
+  inline ::google::protobuf::int32 id() const;
+  inline void set_id(::google::protobuf::int32 value);
+
+  // required float speed = 2;
+  inline bool has_speed() const;
+  inline void clear_speed();
+  static const int kSpeedFieldNumber = 2;
+  inline float speed() const;
+  inline void set_speed(float value);
+
+  // required float angle = 3;
+  inline bool has_angle() const;
+  inline void clear_angle();
+  static const int kAngleFieldNumber = 3;
+  inline float angle() const;
+  inline void set_angle(float value);
+
+  // @@protoc_insertion_point(class_scope:soccer.Command)
+ private:
+  inline void set_has_id();
+  inline void clear_has_id();
+  inline void set_has_speed();
+  inline void clear_has_speed();
+  inline void set_has_angle();
+  inline void clear_has_angle();
+
+  // helper for ByteSize()
+  int RequiredFieldsByteSizeFallback() const;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::int32 id_;
+  float speed_;
+  float angle_;
+  friend void  protobuf_AddDesc_game_5fstatus_2eproto();
+  friend void protobuf_AssignDesc_game_5fstatus_2eproto();
+  friend void protobuf_ShutdownFile_game_5fstatus_2eproto();
+
+  void InitAsDefaultInstance();
+  static Command* default_instance_;
+};
 // ===================================================================
 
 
@@ -564,6 +677,82 @@ inline ::google::protobuf::RepeatedPtrField< ::soccer::Player >*
 GameStatus::mutable_players() {
   // @@protoc_insertion_point(field_mutable_list:soccer.GameStatus.players)
   return &players_;
+}
+
+// -------------------------------------------------------------------
+
+// Command
+
+// required int32 id = 1;
+inline bool Command::has_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Command::set_has_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Command::clear_has_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void Command::clear_id() {
+  id_ = 0;
+  clear_has_id();
+}
+inline ::google::protobuf::int32 Command::id() const {
+  // @@protoc_insertion_point(field_get:soccer.Command.id)
+  return id_;
+}
+inline void Command::set_id(::google::protobuf::int32 value) {
+  set_has_id();
+  id_ = value;
+  // @@protoc_insertion_point(field_set:soccer.Command.id)
+}
+
+// required float speed = 2;
+inline bool Command::has_speed() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Command::set_has_speed() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Command::clear_has_speed() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Command::clear_speed() {
+  speed_ = 0;
+  clear_has_speed();
+}
+inline float Command::speed() const {
+  // @@protoc_insertion_point(field_get:soccer.Command.speed)
+  return speed_;
+}
+inline void Command::set_speed(float value) {
+  set_has_speed();
+  speed_ = value;
+  // @@protoc_insertion_point(field_set:soccer.Command.speed)
+}
+
+// required float angle = 3;
+inline bool Command::has_angle() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void Command::set_has_angle() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void Command::clear_has_angle() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void Command::clear_angle() {
+  angle_ = 0;
+  clear_has_angle();
+}
+inline float Command::angle() const {
+  // @@protoc_insertion_point(field_get:soccer.Command.angle)
+  return angle_;
+}
+inline void Command::set_angle(float value) {
+  set_has_angle();
+  angle_ = value;
+  // @@protoc_insertion_point(field_set:soccer.Command.angle)
 }
 
 

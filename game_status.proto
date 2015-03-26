@@ -14,3 +14,8 @@ message GameStatus {
   required Ball ball = 1;
   repeated Player players = 2;
 }
+message Command {
+  required int32 id = 1;
+  required float speed = 2;
+  required float angle = 3;
+}

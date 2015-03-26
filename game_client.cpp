@@ -33,13 +33,18 @@ int main(){
 
 		//for each player
 		for (int i = 0; i < 10; i++){
+			float x = game_msg.players(i).x();
+            float y = game_msg.players(i).y();
+            std::cout<<"player "<<i<<" "<<x<<", "<<y<<"\n";
+            float angle = 3.14 + atan2(y - by, x - bx);
+
 			std::string com = "command";
 			zmq::message_t zmsg;
             get_msg(com, zmsg);
             sender.send(zmsg);
 			//5. obtain player i (x,y)
 			//6. compute angle of movement
-			//	 float angle = 3.14 + atan2(y - by, x - bx);
+			//	 
 
 			//7. Create "Command" msg, assign (id, speed, angle)
 			//8. Serialize Command to std::string, then to zmq_message

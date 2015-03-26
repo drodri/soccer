@@ -21,6 +21,8 @@ int main(){
     zmq::socket_t publisher(context, ZMQ_PUB);
     publisher.bind("tcp://*:12345");
 	//5. Setup command pull reciever
+	zmq::socket_t receiver(context, ZMQ_PULL);
+    receiver.bind("tcp://*:12346");
 
 	double time_ini = glfwGetTime();
     while (!glfwWindowShouldClose(window)){
@@ -37,9 +39,11 @@ int main(){
         get_msg(status, zmsg);
         publisher.send(zmsg);
 
-		//3. Convert string to zmq message with:
-		//   get_msg (const std::string& str, zmq::message_t& msg)
-		//4. Send message broadcast
+        zmq::message_t command;
+        while (receiver.recv(&command, ZMQ_NOBLOCK)){
+        	std::string com = get_str(command);
+        	std::cout<<com;
+        }
 
 		// RECEIVE AND EXECUTE COMMANDS while incoming command
 		// 6. Receive zmq_message

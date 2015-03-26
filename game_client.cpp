@@ -16,6 +16,8 @@ int main(){
     subscriber.setsockopt(ZMQ_SUBSCRIBE, filter, strlen(filter));
 
 	// . Set zmq pusher to send client commands
+	zmq::socket_t sender(context, ZMQ_PUSH);
+    sender.connect("tcp://localhost:12346");
 	while(1){
 		zmq::message_t update;
         subscriber.recv(&update);
@@ -26,6 +28,10 @@ int main(){
 
 		//for each player
 		for (int i = 0; i < 10; i++){
+			std::string com = "command";
+			zmq::message_t zmsg;
+            get_msg(com, zmsg);
+            sender.send(zmsg);
 			//5. obtain player i (x,y)
 			//6. compute angle of movement
 			//	 float angle = 3.14 + atan2(y - by, x - bx);

@@ -1,11 +1,16 @@
 package soccer;
 
 message Player {
-  //to complete
+  required int32 id = 1;
+  required float x = 2;
+  required float y = 3;
 }
 message Ball {
-  //to complete
+  required float x = 1;
+  required float y = 2;
 }
 message GameStatus {
   //to complete
+  required Ball ball = 1;
+  repeated Player players = 2;
 }

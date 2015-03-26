@@ -3,7 +3,7 @@
 #include <sstream>
 #include <math.h>
 #include "diego/zmqcpp/zmq.hpp"
-//#include "game_status.pb.h"
+#include "game_status.pb.h"
 #include "zmqcpp_msgs.h"
 
 int main(){
@@ -22,7 +22,12 @@ int main(){
 		zmq::message_t update;
         subscriber.recv(&update);
         std::string msg=get_str(update);
-        std::cout<<msg;
+
+        soccer::GameStatus game_msg;
+        game_msg.ParseFromString(msg);
+        float bx = game_msg.ball().x();
+        float by = game_msg.ball().y();
+        std::cout<<bx<<", "<<by<<"\n";
 		//3. Get game status, with Protobuf from stream
 		//4. obtain ball coordinates(bx, by)
 

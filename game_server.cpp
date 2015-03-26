@@ -1,15 +1,19 @@
 #include "glfw_tools.h"
 #include "game_draw.h"
 #include "diego/zmqcpp/zmq.hpp"
-//#include "game_status.pb.h"
+#include "game_status.pb.h"
 #include "zmqcpp_msgs.h"
 #include "game_zmq.h"
 #include <sstream>
 #include <string>
 
 std::string get_game_status(const Game& game){
-	//protobuf serialization of Game here
-	return "Hello";
+	soccer::GameStatus game_msg;
+	game_msg.mutable_ball()->set_x(game.ball.x);
+    game_msg.mutable_ball()->set_y(game.ball.y);
+    std::string str;
+	game_msg.SerializeToString(&str);
+	return str;
 }
 
 int main(){
